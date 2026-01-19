@@ -5,7 +5,7 @@ body {
     height: 100%;
     overflow: hidden;
 }
-
+/* 
 #viewer {
     position: fixed;
     inset: 0;
@@ -22,6 +22,40 @@ body {
     object-fit: contain;
     transform: scale(1) translate(0, 0);
     transition: transform 0.08s linear;
+    cursor: grab;
+} */
+
+/* Viewer: KHÔNG dùng fixed vì TV hay lỗi */
+#viewer {
+    position: absolute;           /* fixed → absolute cho TV */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Video/Ảnh nền */
+#img,
+#photo {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    /* object-fit đôi khi làm video không hiện trên TV */
+    /* object-fit: contain;  ❌ */
+    object-fit: cover;            /* an toàn hơn */
+
+    /* transform làm nhiều TV không render video */
+    /* transform: scale(1) translate(0,0); ❌ */
+    transform: none;              /* bỏ transform cho TV */
+
+    /* transition trên video cũng hay gây lỗi */
+    /* transition: transform 0.08s linear; ❌ */
     cursor: grab;
 }
 
