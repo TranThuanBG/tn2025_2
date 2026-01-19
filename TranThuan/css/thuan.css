@@ -1,0 +1,306 @@
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#viewer {
+    position: fixed;
+    inset: 0;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: scale(1) translate(0, 0);
+    transition: transform 0.08s linear;
+    cursor: grab;
+}
+
+#fsBtn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 80, 80, 0.35);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#fsBtn:hover {
+    background: rgba(255, 80, 80, 0.6);
+}
+
+#playBtn {
+    position: fixed;
+    right: 80px;
+    bottom: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(80, 160, 255, 0.35);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#playBtn:hover {
+    background: rgba(80, 160, 255, 0.6);
+}
+
+.hideUI {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+}
+
+.showUI {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.4s;
+}
+
+#turnOnMusic,
+#turnOffMusic {
+    position: fixed;
+    right: 260px;
+    /* đứng trước slideBtn */
+    bottom: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 200, 120, .35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+#turnOnMusic {
+    display: none;
+}
+
+#turnOnMusic:hover,
+#turnOffMusic:hover {
+    background: rgba(255, 200, 120, .6);
+}
+
+#slideBtn {
+    position: fixed;
+    right: 200px;
+    bottom: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(200, 120, 255, .35);
+    /* tím nhẹ */
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#slideBtn:hover {
+    background: rgba(200, 120, 255, .6);
+}
+
+#img,
+#photo {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    cursor: grab;
+    transform: scale(1) translate(0, 0);
+}
+
+#modeBtn {
+    position: fixed;
+    right: 140px;
+    bottom: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(80, 200, 120, .35);
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#modeBtn:hover {
+    background: rgba(80, 200, 120, .6);
+}
+
+#textWrap {
+    position: absolute;
+    left: 50%;
+    top: 80px;
+    transform: translateX(-50%);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    pointer-events: none;
+}
+
+#titleText {
+    font-size: 100px;
+    font-weight: 400;
+    margin-bottom: 0px;
+    /* font-family: "Dancing Script", "Pacifico", "Segoe Script", cursive; */
+    /* font-family: "Dancing Script", cursive; */
+    font-family: "Great Vibes", cursive;
+    color: #FFDFA0;
+    /* vàng nhẹ */
+    text-shadow: 0 0 6px rgba(255, 215, 0, 0.4), 0 0 12px rgba(255, 180, 0, 0.3);
+}
+
+#yearText {
+    font-size: 36px;
+    /* nhỏ hơn colorText */
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: #f3f2ed;
+    font-family: "Arial", sans-serif;
+    line-height: 1.2;
+    text-align: center;
+}
+
+#colorText {
+    font-size: 45px;
+    /* cỡ chữ lớn */
+    font-weight: 700;
+    font-family: "Arial Black", Arial, sans-serif;
+    line-height: 1.2;
+    text-align: center;
+}
+
+#subText {
+    font-size: 25px;
+    /* nhỏ hơn */
+    font-weight: 500;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    color: #f3f2ed;
+    /* -webkit-text-stroke: 1px red;   2px = độ dày nét viền */
+    -webkit-text-stroke: 2px;
+    text-align: center;
+    line-height: 1.2;
+}
+
+@keyframes kenBurns {
+    0% {
+        transform: translate(-10px, -10px) scale(1);
+    }
+    50% {
+        transform: translate(10px, 5px) scale(1.06);
+    }
+    100% {
+        transform: translate(-10px, -10px) scale(1);
+    }
+}
+
+.photoEffect {
+    animation: kenBurns 20s ease-in-out infinite;
+}
+
+
+/*  1️⃣ Xoay toàn bộ viewer khi điện thoại DỌC CHO DIEN THOAI*/
+
+@media (max-width: 768px) and (orientation: portrait) {
+    #viewer {
+        position: absolute;
+        width: 100vh;
+        height: 100vw;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(90deg);
+        transform-origin: center center;
+    }
+    #img,
+    #photo {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+
+/*  2️⃣ Fix chữ bị lệch khi xoay (RẤT QUAN TRỌNG)*/
+
+@media (max-width: 768px) {
+    #titleText {
+        font-size: 48px;
+    }
+    #yearText {
+        font-size: 20px;
+    }
+    #colorText {
+        font-size: 26px;
+    }
+    #subText {
+        font-size: 16px;
+        -webkit-text-stroke: 1px;
+    }
+    #textWrap {
+        top: 40px;
+        gap: 6px;
+    }
+}
+
+
+/* 3️⃣ Fix nút điều khiển cho mobile (đỡ che nội dung) */
+
+@media (max-width: 768px) {
+    #fsBtn,
+    #playBtn,
+    #slideBtn,
+    #modeBtn,
+    #turnOnMusic,
+    #turnOffMusic {
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+        bottom: 12px;
+    }
+    #fsBtn {
+        right: 12px;
+    }
+    #playBtn {
+        right: 60px;
+    }
+    #modeBtn {
+        right: 108px;
+    }
+    #slideBtn {
+        right: 156px;
+    }
+    #turnOnMusic,
+    #turnOffMusic {
+        right: 204px;
+    }
+}
+
+
+/* 4️⃣ (Khuyến nghị) Ẩn UI khi fullscreen trên mobile */
+
+@media (max-width: 768px) {
+    body:fullscreen .hideUI {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
